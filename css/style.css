@@ -130,7 +130,7 @@ hr {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #337AB7;
+    background: #264889;
 }
 
 a[data-toggle="collapse"] {
