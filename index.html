@@ -1,0 +1,4451 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
+
+	<title>Fusion API Documentation</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/prism.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+</head>
+<body>
+<button onclick="topFunction()" id="myBtn" title="Top of Page">&nbsp;<span class="glyphicon glyphicon-triangle-top"></span>&nbsp;</button>
+<div class="wrapper">
+     <!-- Sidebar Holder -->
+     <nav id="sidebar">
+         <div class="sidebar-header">
+             <h3>Demo Company Data</h3>
+         </div>
+
+         <ul class="list-unstyled components">
+             <p>Table of Contents</p>
+             <li>
+                 <a href="index.html">Home</a>
+				 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">API Lookup by IP Address</a>
+                 <ul class="collapse list-unstyled" id="homeSubmenu">
+					<li><a href="index.html#ip-intro">Introduction</a></li>
+					<li><a href="index.html#ip-accessing">Accessing</a></li>
+					<li><a href="index.html#ip-errorcodes">Error Codes And Messages</a></li>
+					<li><a href="index.html#ip-statecodes">State Codes</a></li>
+					<li><a href="index.html#ip-countrycodes">Country Codes</a></li>
+					<li><a href="index.html#ip-sublookup-a">Fusion API Subscriber LookUp (Type:A)</a></li>
+					<li><a href="index.html#ip-cas">Central Authentication Service Integration (optional)</a></li>
+                 </ul>
+             </li>
+             <li>
+                 
+                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">API Order Processing</a>
+                 <ul class="collapse list-unstyled" id="pageSubmenu">
+					<li><a href="index_ord.html#op-intro">Introduction</a></li>
+					<li><a href="index_ord.html#op-accessing">Accessing</a></li>
+					<li><a href="index_ord.html#op-errorcodes">Error Codes And Messages</a></li>
+					<li><a href="index_ord.html#op-statecodes">State Codes</a></li>
+					<li><a href="index_ord.html#op-countrycodes">Country Codes</a></li>
+					<li><a href="index_ord.html#op-sublookup-a">Fusion API Subscriber LookUp (Type:A)</a></li>
+					<li><a href="index_ord.html#op-cas">Central Authentication Service Integration (optional)</a></li>
+                 </ul>
+             </li>
+             <!-- <li>
+                 <a href="#">Contact</a>
+             </li> -->
+         </ul>
+
+         <!-- <ul class="list-unstyled CTAs">
+             <li><a href="#" class="download">Download source</a></li>
+             <li><a href="#" class="article">Back to article</a></li>
+         </ul> -->
+     </nav>
+
+     <!-- Page Content Holder -->
+     <div id="content">
+
+		<header class="container-fluid">
+		<p>Corporate Technology - Fusion API Documentation</p>
+		</header>
+
+         <nav class="navbar navbar-default">
+             <div class="container-fluid">
+
+                 <div class="navbar-header">
+                     <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                         <i class="glyphicon glyphicon-align-left"></i>
+                         <span>Toggle Sidebar</span>
+                     </button>
+                 </div>
+
+                 
+             </div>
+         </nav>
+
+<div class="main-data">
+
+		<div class="well well-sm">
+			<p><strong>Please Note:</strong> Use or disclosure of data contained in this document is subject to the restriction contained below. </p>
+			<p>This document contains information that shall not be disclosed outside of Demo Company Data, LLC. It shall not be duplicated, used or disclosed - in whole or in part - for any purpose other than for evaluation. If, however, a need is established wherein the document needs to be electronically submitted or reproduced outside of Demo Company Data, LLC, authority will come only from the President, CIO, or Division VP of Demo Company Data, LLC. The receiver does not have the right to duplicate, use, or disclose the data to the extent provided in the verbal agreement. This restriction does not limit the right to use information contained in this data if it is obtained from another source without restriction.</p>
+		</div>
+
+	<h2 id="ip-intro">Fusion API Lookup by IP Address</h2>
+	<h5 style="color:#4F4F4F;"><span class="glyphicon glyphicon-calendar"></span> Rev. March 2017</h5>
+	
+	<!-- Start Accessing -->
+	<h3 id="ip-accessing">Accessing</h3>
+	<p>You MUST provide Demo Company Data with the IP range you will be submitting calls from, as we have to add that to our system of approved IP's allowed to make calls into the system.</p>
+	<h3>Data Return Levels</h3>
+	<p>Demo Company Data recognizes that not all clients will need the same amount of data returned due to the purpose that it is being used for. Some clients may need all the available data while others may only need to get a subset.</p>
+	<p>To this end we have levels available to return only the data which is needed at different pricing.
+Your client representative can assist you with the levels which we have available.</p>
+	<!-- End Accessing -->
+	<hr>
+
+ 	<!-- Start Error Codes And Messages -->
+	<h3 id="ip-errorcodes">Error Codes And Messages</h3>
+	<p>The error codes which can be returned by Fusion API are below.</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>
+				ERR_CODE
+			</th>
+			<th>
+				ERR_DESC
+			</th>
+			<th>
+				ERR_MESG
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				1000
+			</td>
+			<td>
+				Name is Required
+			</td>
+			<td>
+				**Name must be entered**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1004
+			</td>
+			<td>
+				First/Last (Max 50)
+			</td>
+			<td>
+				**Please Enter Valid First and Last Name. Max 50 characters**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1005
+			</td>
+			<td>
+				Primary or Secondary Address is Required
+			</td>
+			<td>
+				**The Primary or Secondary Address is Required**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1006
+			</td>
+			<td>
+				Primary Address Line (Max 50)
+			</td>
+			<td>
+				**Please Enter a Valid Address. Max 50 characters**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1007
+			</td>
+			<td>
+				Secondary Address Line (Max 50)
+			</td>
+			<td>
+				**Please Enter a Valid Secondary Address. Max 50 characters**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1010
+			</td>
+			<td>
+				Country Required
+			</td>
+			<td>
+				**The Country is Required**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1011
+			</td>
+			<td>
+				Country not in Country Table
+			</td>
+			<td>
+				**Please Enter a Valid Country**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1012
+			</td>
+			<td>
+				State Required (US/Canada)
+			</td>
+			<td>
+				**The State/Prov. is Required**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1013
+			</td>
+			<td>
+				State not in State Table
+			</td>
+			<td>
+				**Please Enter a Valid State**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1014
+			</td>
+			<td>
+				Zip/Postal Code Required (US/Canada)
+			</td>
+			<td>
+				**The Zip/Postal Code is Required**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1015
+			</td>
+			<td>
+				US Zip Over 5 Characters
+			</td>
+			<td>
+				**Please Enter Valid US Zip Code. Max 5 characters**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1021
+			</td>
+			<td>
+				Company (Max 50)
+			</td>
+			<td>
+				**Please Enter a Valid Company. Max 50 characters**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1022
+			</td>
+			<td>
+				LookUp Required
+			</td>
+			<td>
+				**Please Enter the LookUp Type**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1023
+			</td>
+			<td>
+				LookUp Invalid
+			</td>
+			<td>
+				**Please Enter a valid LookUp Type**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1100
+			</td>
+			<td>
+				Account number Required
+			</td>
+			<td>
+				**The Account Number is Required**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1101
+			</td>
+			<td>
+				Account Invalid
+			</td>
+			<td>
+				**The Account Number is Invalid**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				1102
+			</td>
+			<td>
+				No Record Found
+			</td>
+			<td>
+				**No Record was Found**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				2000
+			</td>
+			<td>
+				MagID is Required
+			</td>
+			<td>
+				**The Magazine ID is Required**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				3000
+			</td>
+			<td>
+				ID Required
+			</td>
+			<td>
+				**The ID is Required**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				3001
+			</td>
+			<td>
+				ID Invalid
+			</td>
+			<td>
+				**The ID is Invalid**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				4000
+			</td>
+			<td>
+				Type Required
+			</td>
+			<td>
+				**The Type is Required**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				4001
+			</td>
+			<td>
+				Type Invalid
+			</td>
+			<td>
+				**The Type is Invalid**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				4002
+			</td>
+			<td>
+				LookUp Invalid
+			</td>
+			<td>
+				**The LookUp is Invalid. Must be ACCOUNT, EMAIL, or ADDRESS.**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				4003
+			</td>
+			<td>
+				Account Invalid
+			</td>
+			<td>
+				**The Account cannot be empty for LookUp ACCOUNT.**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				4004
+			</td>
+			<td>
+				Email Invalid
+			</td>
+			<td>
+				**The Email cannot be empty for LookUp EMail.**
+			</td>
+		</tr>
+		<tr>
+			<td>
+				4005
+			</td>
+			<td>
+				Name/Address Invalid
+			</td>
+			<td>
+				**The Name/address cannot be empty for LookUp Address.**
+			</td>
+		</td>
+		<tbody>
+</table>
+
+
+	<!-- End Error Codes And Messages -->
+	<hr>
+		
+	<!-- Start State Codes -->
+	<h3 id="ip-statecodes">State Codes</h3>
+	<p>The state codes which can be accepted by Fusion API state parameter are below.</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>
+				CODE
+			</th>
+			<th>
+				COUNTRY
+			</th>
+			<th>
+				ST_NAME
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				AA
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				AA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AB
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				Alberta
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AE
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				AE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AK
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Alaska
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AL
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Alabama
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AP
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				AP
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AR
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Arkansas
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AS
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				American Samoa
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AZ
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Arizona
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BC
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				British Columbia
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CA
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				California
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CO
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Colorado
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CT
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Connecticut
+			</td>
+		</tr>
+		<tr>
+			<td>
+				DC
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				District of Columbia
+			</td>
+		</tr>
+		<tr>
+			<td>
+				DE
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Delaware
+			</td>
+		</tr>
+		<tr>
+			<td>
+				FL
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Florida
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GA
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Georgia
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GU
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Guam
+			</td>
+		</tr>
+		<tr>
+			<td>
+				HI
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Hawaii
+			</td>
+		</tr>
+		<tr>
+			<td>
+				IA
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Iowa
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ID
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Idaho
+			</td>
+		</tr>
+		<tr>
+			<td>
+				IL
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Illinois
+			</td>
+		</tr>
+		<tr>
+			<td>
+				IN
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Indiana
+			</td>
+		</tr>
+		<tr>
+			<td>
+				KS
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Kansas
+			</td>
+		</tr>
+		<tr>
+			<td>
+				KY
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Kentucky
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LA
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Louisiana
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MA
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Massachusetts
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MB
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				Manitoba
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MD
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Maryland
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ME
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Maine
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MI
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Michigan
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MN
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Minnesota
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MO
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Missouri
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MP
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				Northern Mariana Islands
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MS
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Mississippi
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MT
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Montana
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NB
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				New Brunswick
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NC
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				North Carolina
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ND
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				North Dakota
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NE
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Nebraska
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NH
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				New Hampshire
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NJ
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				New Jersey
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NL
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				Newfoundland
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NM
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				New Mexico
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NT
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				N.W.T.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NU
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				Nunavut
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NV
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Nevada
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NY
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				New York
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NS
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				Nova Scotia
+			</td>
+		</tr>
+		<tr>
+			<td>
+				OH
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Ohio
+			</td>
+		</tr>
+		<tr>
+			<td>
+				OK
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Oklahoma
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ON
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				Ontario
+			</td>
+		</tr>
+		<tr>
+			<td>
+				OR
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Oregon
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PA
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Pennsylvania
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PE
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				Prince Edward Island
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PQ
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				Quebec
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PR
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Puerto Rico
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PW
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Palau
+			</td>
+		</tr>
+		<tr>
+			<td>
+				QC
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				Quebec
+			</td>
+		</tr>
+		<tr>
+			<td>
+				RI
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Rhode Island
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SC
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				South Carolina
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SD
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				South Dakota
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SK
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				Saskatchewan
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TN
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Tennessee
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TX
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Texas
+			</td>
+		</tr>
+		<tr>
+			<td>
+				UT
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Utah
+			</td>
+		</tr>
+		<tr>
+			<td>
+				VA
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Virginia
+			</td>
+		</tr>
+		<tr>
+			<td>
+				VI
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Virgin Island
+			</td>
+		</tr>
+		<tr>
+			<td>
+				VT
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Vermont
+			</td>
+		</tr>
+		<tr>
+			<td>
+				WA
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Washington
+			</td>
+		</tr>
+		<tr>
+			<td>
+				WI
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Wisconsin
+			</td>
+		</tr>
+		<tr>
+			<td>
+				WV
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				West Virginia
+			</td>
+		</tr>
+		<tr>
+			<td>
+				WY
+			</td>
+			<td>
+				US
+			</td>
+			<td>
+				Wyoming
+			</td>
+		</tr>
+		<tr>
+			<td>
+				YT
+			</td>
+			<td>
+				CA
+			</td>
+			<td>
+				Yukon
+			</td>
+		</tr>
+	<tbody>
+</table>
+
+
+	<!-- End State Codes -->
+	<hr>
+	
+	
+	<!-- Start Country Codes -->
+	<h3 id="ip-countrycodes">Country Codes</h3>
+	<p>The country codes which can be accepted by Fusion API country parameter are below.</p>
+
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>
+				CODE
+			</th>
+			<th>
+				NAME
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				A2
+			</td>
+			<td>
+				AZORES
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AD
+			</td>
+			<td>
+				ANDORRA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AE
+			</td>
+			<td>
+				UNITED ARAB EMIRATES
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AF
+			</td>
+			<td>
+				AFGHANISTAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AG
+			</td>
+			<td>
+				ANTIGUA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AI
+			</td>
+			<td>
+				ANGUILLA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AL
+			</td>
+			<td>
+				ALBANIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AM
+			</td>
+			<td>
+				ARMENIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AN
+			</td>
+			<td>
+				NETHERLANDS ANTILLES
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AO
+			</td>
+			<td>
+				ANGOLA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AQ
+			</td>
+			<td>
+				ANTARCTICA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AR
+			</td>
+			<td>
+				ARGENTINA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AS
+			</td>
+			<td>
+				AMERICAN SAMOA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AT
+			</td>
+			<td>
+				AUSTRIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AU
+			</td>
+			<td>
+				AUSTRALIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AW
+			</td>
+			<td>
+				ARUBA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				AZ
+			</td>
+			<td>
+				AZERBAIJAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				B1
+			</td>
+			<td>
+				BURMA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BA
+			</td>
+			<td>
+				BOSNIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BB
+			</td>
+			<td>
+				BARBADOS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BD
+			</td>
+			<td>
+				BANGLADESH
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BE
+			</td>
+			<td>
+				BELGIUM
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BF
+			</td>
+			<td>
+				BURKINA FASO
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BG
+			</td>
+			<td>
+				BULGARIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BH
+			</td>
+			<td>
+				BAHRAIN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BI
+			</td>
+			<td>
+				BURUNDI
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BJ
+			</td>
+			<td>
+				BENIN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BM
+			</td>
+			<td>
+				BERMUDA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BN
+			</td>
+			<td>
+				BRUNEI
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BO
+			</td>
+			<td>
+				BOLIVIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BQ
+			</td>
+			<td>
+				BONAIRE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BR
+			</td>
+			<td>
+				BRAZIL
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BS
+			</td>
+			<td>
+				BAHAMAS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BT
+			</td>
+			<td>
+				BHUTAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BW
+			</td>
+			<td>
+				BOTSWANA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BY
+			</td>
+			<td>
+				BELARUS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				BZ
+			</td>
+			<td>
+				BELIZE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				C1
+			</td>
+			<td>
+				CHANNEL ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CA
+			</td>
+			<td>
+				CANADA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CF
+			</td>
+			<td>
+				CENTRAL AFRICAN REPUBLIC
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CG
+			</td>
+			<td>
+				CONGO
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CH
+			</td>
+			<td>
+				SWITZERLAND
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CI
+			</td>
+			<td>
+				IVORY COAST
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CK
+			</td>
+			<td>
+				COOK ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CL
+			</td>
+			<td>
+				CHILE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CM
+			</td>
+			<td>
+				CAMEROON
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CN
+			</td>
+			<td>
+				CHINA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CO
+			</td>
+			<td>
+				COLOMBIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CS
+			</td>
+			<td>
+				CZECHOSLAVAKIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CR
+			</td>
+			<td>
+				COSTA RICA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CU
+			</td>
+			<td>
+				CUBA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CV
+			</td>
+			<td>
+				CAPE VERDE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CX
+			</td>
+			<td>
+				CHRISTMAS ISLAND
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CY
+			</td>
+			<td>
+				CYPRUS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CZ
+			</td>
+			<td>
+				CZECH REP
+			</td>
+		</tr>
+		<tr>
+			<td>
+				D1
+			</td>
+			<td>
+				DUTCH WEST INDIES
+			</td>
+		</tr>
+		<tr>
+			<td>
+				DE
+			</td>
+			<td>
+				GERMANY
+			</td>
+		</tr>
+		<tr>
+			<td>
+				DK
+			</td>
+			<td>
+				DENMARK
+			</td>
+		</tr>
+		<tr>
+			<td>
+				DM
+			</td>
+			<td>
+				DOMINICA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				DO
+			</td>
+			<td>
+				DOMINICAN REPUBLIC
+			</td>
+		</tr>
+		<tr>
+			<td>
+				DZ
+			</td>
+			<td>
+				ALGERIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				EC
+			</td>
+			<td>
+				ECUADOR
+			</td>
+		</tr>
+		<tr>
+			<td>
+				EE
+			</td>
+			<td>
+				ESTONIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				EG
+			</td>
+			<td>
+				EGYPT
+			</td>
+		</tr>
+		<tr>
+			<td>
+				EH
+			</td>
+			<td>
+				WESTERN SAHARA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ER
+			</td>
+			<td>
+				ERITREA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ES
+			</td>
+			<td>
+				SPAIN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ET
+			</td>
+			<td>
+				ETHIOPIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				F1
+			</td>
+			<td>
+				FORMOSA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				F2
+			</td>
+			<td>
+				FRENCH WEST INDIES
+			</td>
+		</tr>
+		<tr>
+			<td>
+				FI
+			</td>
+			<td>
+				FINLAND
+			</td>
+		</tr>
+		<tr>
+			<td>
+				FJ
+			</td>
+			<td>
+				FIJI ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				FK
+			</td>
+			<td>
+				FALKLAND ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				FM
+			</td>
+			<td>
+				MICRONESIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				FO
+			</td>
+			<td>
+				FAROE ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				FR
+			</td>
+			<td>
+				FRANCE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GA
+			</td>
+			<td>
+				GABON
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GB
+			</td>
+			<td>
+				UNITED KINGDOM
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GD
+			</td>
+			<td>
+				GRENADA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GE
+			</td>
+			<td>
+				GEORGIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GF
+			</td>
+			<td>
+				FRENCH GUIANA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GG
+			</td>
+			<td>
+				GUERNSEY
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GH
+			</td>
+			<td>
+				GHANA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GI
+			</td>
+			<td>
+				GIBRALTAR
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GL
+			</td>
+			<td>
+				GREENLAND
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GM
+			</td>
+			<td>
+				GAMBIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GN
+			</td>
+			<td>
+				GUINEA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GP
+			</td>
+			<td>
+				GUADELOUPE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GQ
+			</td>
+			<td>
+				EQ GUINEA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GR
+			</td>
+			<td>
+				GREECE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GT
+			</td>
+			<td>
+				GUATEMALA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GU
+			</td>
+			<td>
+				GUAM
+			</td>
+		</tr>
+		<tr>
+			<td>
+				GY
+			</td>
+			<td>
+				GUYANA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				HK
+			</td>
+			<td>
+				HONG KONG
+			</td>
+		</tr>
+		<tr>
+			<td>
+				HN
+			</td>
+			<td>
+				HONDURAS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				HR
+			</td>
+			<td>
+				CROATIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				HT
+			</td>
+			<td>
+				HAITI
+			</td>
+		</tr>
+		<tr>
+			<td>
+				HU
+			</td>
+			<td>
+				HUNGARY
+			</td>
+		</tr>
+		<tr>
+			<td>
+				I1
+			</td>
+			<td>
+				ISLE OF MAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				IC
+			</td>
+			<td>
+				CANARY ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ID
+			</td>
+			<td>
+				INDONESIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				IE
+			</td>
+			<td>
+				IRELAND
+			</td>
+		</tr>
+		<tr>
+			<td>
+				IL
+			</td>
+			<td>
+				ISRAEL
+			</td>
+		</tr>
+		<tr>
+			<td>
+				IN
+			</td>
+			<td>
+				INDIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				IQ
+			</td>
+			<td>
+				IRAQ
+			</td>
+		</tr>
+		<tr>
+			<td>
+				IR
+			</td>
+			<td>
+				IRAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				IS
+			</td>
+			<td>
+				ICELAND
+			</td>
+		</tr>
+		<tr>
+			<td>
+				IT
+			</td>
+			<td>
+				ITALY
+			</td>
+		</tr>
+		<tr>
+			<td>
+				JE
+			</td>
+			<td>
+				JERSEY
+			</td>
+		</tr>
+		<tr>
+			<td>
+				JM
+			</td>
+			<td>
+				JAMAICA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				JO
+			</td>
+			<td>
+				JORDAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				JP
+			</td>
+			<td>
+				JAPAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				KE
+			</td>
+			<td>
+				KENYA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				KG
+			</td>
+			<td>
+				KYRGYZSTAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				KH
+			</td>
+			<td>
+				CAMBODIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				KI
+			</td>
+			<td>
+				KIRIBATI
+			</td>
+		</tr>
+		<tr>
+			<td>
+				KN
+			</td>
+			<td>
+				ST KITTS &amp; NEVIS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				KP
+			</td>
+			<td>
+				N KOREA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				KR
+			</td>
+			<td>
+				KOREA, REPUBLIC OF
+			</td>
+		</tr>
+		<tr>
+			<td>
+				KW
+			</td>
+			<td>
+				KUWAIT
+			</td>
+		</tr>
+		<tr>
+			<td>
+				KY
+			</td>
+			<td>
+				CAYMAN ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				KZ
+			</td>
+			<td>
+				KAZAKHSTAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				L1
+			</td>
+			<td>
+				LEEWARD ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LA
+			</td>
+			<td>
+				LAOS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LB
+			</td>
+			<td>
+				LEBANON
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LC
+			</td>
+			<td>
+				ST. LUCIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LI
+			</td>
+			<td>
+				LIECHTENSTEIN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LK
+			</td>
+			<td>
+				SRI LANKA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LR
+			</td>
+			<td>
+				LIBERIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LS
+			</td>
+			<td>
+				LESOTHO
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LT
+			</td>
+			<td>
+				LITHUANIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LU
+			</td>
+			<td>
+				LUXEMBOURG
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LV
+			</td>
+			<td>
+				LATVIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				LY
+			</td>
+			<td>
+				LIBYA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				M1
+			</td>
+			<td>
+				MADERIA ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				M2
+			</td>
+			<td>
+				MOLDOVA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MA
+			</td>
+			<td>
+				MOROCCO
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MC
+			</td>
+			<td>
+				MONACO
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ME
+			</td>
+			<td>
+				MONTENEGRO
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MG
+			</td>
+			<td>
+				MADAGASCAR
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MH
+			</td>
+			<td>
+				MARSHALL ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MK
+			</td>
+			<td>
+				MACEDONIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ML
+			</td>
+			<td>
+				MALI
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MM
+			</td>
+			<td>
+				MYANMAR
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MN
+			</td>
+			<td>
+				MONGOLIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MO
+			</td>
+			<td>
+				MACAO
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MQ
+			</td>
+			<td>
+				MARTINIQUE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MR
+			</td>
+			<td>
+				MAURITANIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MT
+			</td>
+			<td>
+				MALTA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MU
+			</td>
+			<td>
+				MAURITIUS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MV
+			</td>
+			<td>
+				MALDIVES
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MW
+			</td>
+			<td>
+				MALAWI
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MX
+			</td>
+			<td>
+				MEXICO
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MY
+			</td>
+			<td>
+				MALAYSIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				MZ
+			</td>
+			<td>
+				MOZAMBIQUE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				N1
+			</td>
+			<td>
+				NEW HERBDON
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NA
+			</td>
+			<td>
+				NAMIBIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NC
+			</td>
+			<td>
+				NEW CALEDONIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NE
+			</td>
+			<td>
+				NIGER
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NG
+			</td>
+			<td>
+				NIGERIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NI
+			</td>
+			<td>
+				NICARAGUA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NL
+			</td>
+			<td>
+				NETHERLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NO
+			</td>
+			<td>
+				NORWAY
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NP
+			</td>
+			<td>
+				NEPAL
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NR
+			</td>
+			<td>
+				NAURU
+			</td>
+		</tr>
+		<tr>
+			<td>
+				NZ
+			</td>
+			<td>
+				NEW ZEALAND
+			</td>
+		</tr>
+		<tr>
+			<td>
+				O1
+			</td>
+			<td>
+				OCEANIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				OM
+			</td>
+			<td>
+				OMAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				P1
+			</td>
+			<td>
+				PERSIAN GUINEA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				P2
+			</td>
+			<td>
+				PERSIAN GULF
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PA
+			</td>
+			<td>
+				PANAMA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PE
+			</td>
+			<td>
+				PERU
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PF
+			</td>
+			<td>
+				FRENCH POLYNESIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PG
+			</td>
+			<td>
+				NEW GUINEA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PH
+			</td>
+			<td>
+				PHILIPPINES
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PK
+			</td>
+			<td>
+				PAKISTAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PL
+			</td>
+			<td>
+				POLAND
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PM
+			</td>
+			<td>
+				ST. PIERRE-MIQUELON
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PN
+			</td>
+			<td>
+				PITCAIRN ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PT
+			</td>
+			<td>
+				PORTUGAL
+			</td>
+		</tr>
+		<tr>
+			<td>
+				PY
+			</td>
+			<td>
+				PARAGUAY
+			</td>
+		</tr>
+		<tr>
+			<td>
+				QA
+			</td>
+			<td>
+				QATAR
+			</td>
+		</tr>
+		<tr>
+			<td>
+				R1
+			</td>
+			<td>
+				RHODESIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				RE
+			</td>
+			<td>
+				REUNION
+			</td>
+		</tr>
+		<tr>
+			<td>
+				RO
+			</td>
+			<td>
+				ROMANIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				RS
+			</td>
+			<td>
+				SERBIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				RU
+			</td>
+			<td>
+				RUSSIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				RW
+			</td>
+			<td>
+				RWANDA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				S1
+			</td>
+			<td>
+				SAN CRUZ ISLAND
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SA
+			</td>
+			<td>
+				SAUDI ARABIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SB
+			</td>
+			<td>
+				SOLOMON ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SC
+			</td>
+			<td>
+				SEYCHELLES
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SD
+			</td>
+			<td>
+				SUDAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SE
+			</td>
+			<td>
+				SWEDEN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SG
+			</td>
+			<td>
+				SINGAPORE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SH
+			</td>
+			<td>
+				ST. HELEN ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SI
+			</td>
+			<td>
+				SLOVENIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SK
+			</td>
+			<td>
+				SLOVAKIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SL
+			</td>
+			<td>
+				SIERRA LEONE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SM
+			</td>
+			<td>
+				SAN MARINO
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SN
+			</td>
+			<td>
+				SENEGAL
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SO
+			</td>
+			<td>
+				SOMALIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SR
+			</td>
+			<td>
+				SURINAME
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ST
+			</td>
+			<td>
+				SAO TOME
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SV
+			</td>
+			<td>
+				EL SALVADOR
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SY
+			</td>
+			<td>
+				SYRIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SZ
+			</td>
+			<td>
+				SWAZILAND
+			</td>
+		</tr>
+		<tr>
+			<td>
+				T1
+			</td>
+			<td>
+				TAHITI
+			</td>
+		</tr>
+		<tr>
+			<td>
+				T3
+			</td>
+			<td>
+				TRUCL STA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TC
+			</td>
+			<td>
+				TURKS &amp; CAICOS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TD
+			</td>
+			<td>
+				CHAD
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TG
+			</td>
+			<td>
+				TOGO
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TH
+			</td>
+			<td>
+				THAILAND
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TJ
+			</td>
+			<td>
+				TAJIKISTAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TN
+			</td>
+			<td>
+				TUNISIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TO
+			</td>
+			<td>
+				TONGA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TP
+			</td>
+			<td>
+				EAST TIMORE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TR
+			</td>
+			<td>
+				TURKEY
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TT
+			</td>
+			<td>
+				TRINIDAD &amp; TOBAGO
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TV
+			</td>
+			<td>
+				TUVALU
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TW
+			</td>
+			<td>
+				TAIWAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				TZ
+			</td>
+			<td>
+				TANZANIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				U1
+			</td>
+			<td>
+				UPPER VOLTA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				UA
+			</td>
+			<td>
+				UKRAINE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				UG
+			</td>
+			<td>
+				UGANDA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				UM
+			</td>
+			<td>
+				US MINOR OUTLYING IS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				US
+			</td>
+			<td>
+				UNITED STATES
+			</td>
+		</tr>
+		<tr>
+			<td>
+				UY
+			</td>
+			<td>
+				URUGUAY
+			</td>
+		</tr>
+		<tr>
+			<td>
+				UZ
+			</td>
+			<td>
+				UZBEKISTAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				VA
+			</td>
+			<td>
+				VATICAN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				VC
+			</td>
+			<td>
+				ST. VINCENT
+			</td>
+		</tr>
+		<tr>
+			<td>
+				VE
+			</td>
+			<td>
+				VENEZUELA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				VG
+			</td>
+			<td>
+				BRITISH VIRGIN ISL
+			</td>
+		</tr>
+		<tr>
+			<td>
+				VI
+			</td>
+			<td>
+				VIRGIN ISLANDS, US
+			</td>
+		</tr>
+		<tr>
+			<td>
+				VN
+			</td>
+			<td>
+				VIETNAM
+			</td>
+		</tr>
+		<tr>
+			<td>
+				VU
+			</td>
+			<td>
+				VANUATU
+			</td>
+		</tr>
+		<tr>
+			<td>
+				W2
+			</td>
+			<td>
+				WEST INDIES
+			</td>
+		</tr>
+		<tr>
+			<td>
+				W3
+			</td>
+			<td>
+				WEST SAMOA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				W4
+			</td>
+			<td>
+				WINWARD ISLANDS
+			</td>
+		</tr>
+		<tr>
+			<td>
+				WS
+			</td>
+			<td>
+				SAMOA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				YE
+			</td>
+			<td>
+				YEMEN
+			</td>
+		</tr>
+		<tr>
+			<td>
+				YU
+			</td>
+			<td>
+				YUGOSLAVIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ZA
+			</td>
+			<td>
+				SOUTH AFRICA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ZM
+			</td>
+			<td>
+				ZAMBIA
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ZR
+			</td>
+			<td>
+				ZAIRE
+			</td>
+		</tr>
+		<tr>
+			<td>
+				ZW
+			</td>
+			<td>
+				ZIMBABWE
+			</td>
+		</tr>
+	<tbody>
+</table>
+
+
+	<!-- End Country Codes -->
+	<hr>
+	
+	<!-- Start Subscriber LookUp Type A -->
+	<h3 id="ip-sublookup-a">Fusion API Subscriber LookUp (Type:A)</h3>
+	<p>Your website staff would be doing a call to PCD to check the status on a subscriber by magazine account number, name/address, or e-mail address.</p>
+	<p>Data is returned in XML format. Each possible subscriber returned is contained within tags &lt;CUSTOMER&gt; &lt;/CUSTOMER&gt;</p>
+	<p><strong>Here are some examples of what those call urls would:</strong></p>
+	<p class="codetitle"><strong>Fusion API Subscriber LookUp Customer Lookup by Account Number:</strong></p>
+		<figure>
+			<pre><code class="language-markup">
+https://secure.testcompany.com/cdbtest/fusion_api.main?iMagId=XXXXX&iId=YourKey&iType=A&iLookUp=ACCOUNT&iAccount=123456789
+			</code></pre>
+		</figure>
+	<p class="codetitle"><strong>Fusion API Subscriber LookUp Customer Lookup by Address:</strong></p>
+		<figure>
+			<pre><code class="language-markup">
+https://secure.testcompany.com/cdbtest/fusion_api.main?iMagId=XXXXX&iId=YourKey&iType=A&iLookUp=ADDRESS&iFName=John&iLName=Doe&iPAddr=11%20Commerce%20Blvd&iPCode=32164&iCountry=US
+			</code></pre>
+		</figure>
+	<p class="codetitle"><strong>Fusion API Subscriber Customer Lookup by Email:</strong></p>
+		<figure>
+			<pre><code class="language-markup">
+https://secure.testcompany.com/cdbtest/fusion_api.main?iMagId=XXXXX&iId=YourKey&iType=A&iLookUp=EMAIL&iEmailAddr=john.doe@testcompany.com
+			</code></pre>
+		</figure>
+	<p><strong>Breakdown of the components of the url call:</strong></p>
+	<p><span class="codehilite">https://secure.testcompany.com/cdbtest/fusion_api.main?</span> - this is the TEST domain. This information will change once everything is tested and is ready to go live. Your Internet Services Account Manager will provide you with the LIVE domain name once approved to go live.</p>
+	<p>Parameters after the first question mark in the url must have "<span class="codehilite">&</span>" in front of it.</p>
+	
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>
+				Name
+			</th>
+			<th class="text-center">
+				Length
+			</th>
+			<th>
+				Type
+			</th>
+			<th class="text-center">
+				Value
+			</th>
+			<th class="text-center">
+				Required
+			</th>
+			<th>
+				Description
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				iMagId
+			</td>
+			<td class="text-center">
+				5
+			</td>
+			<td>
+				Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">
+				Y
+			</td>
+			<td>
+				Magazine Identifier
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iType
+			</td>
+			<td class="text-center">
+				1
+			</td>
+			<td>
+				Character
+			</td>
+			<td class="text-center">
+				A
+			</td>
+			<td class="text-center">
+				Y
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>
+				iId
+			</td>
+			<td class="text-center">
+				20
+			</td>
+			<td>
+				Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">
+				Y
+			</td>
+			<td>
+				Unique Key for each Transaction OR Can be same for each call, this is your choice
+			</td>
+		</tr>
+	<tbody>
+</table>
+
+		<p>Notes:</p>
+		<p><strong>iMagId</strong> - this is the client code/pub code combination for the magazine title you want to look up.</p>
+		<p><strong>iId</strong> - this is your own tracking key you supply.</p>
+		<p><strong>iType</strong> - this designates the call type you would like to do. This should always be set to "A".</p>
+		<p><strong>iLookUp</strong> - this designated the field you are submitting for the lookup. Values can be: ADDRESS, ACCOUNT, EMAIL. But, must be 1 of these.</p>
+		<p><strong>By Address:</strong></p>
+		
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th colspan="7">
+				US
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				iLookUp
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">
+				Character
+			</td>
+			<td class="text-center">
+				ADDRESS
+			</td>
+			<td class="text-center">
+				Y
+			</td>
+			<td>
+				Type of CS LookUp (US)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iFName
+			</td>
+			<td class="text-center">
+				50
+			</td>
+			<td class="text-center">
+				Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">
+				Y
+			</td>
+			<td>
+				First Name
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iLName
+			</td>
+			<td class="text-center">
+				50
+			</td>
+			<td class="text-center">
+				Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">
+				Y
+			</td>
+			<td>
+				Last Name
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iPAddr
+			</td>
+			<td class="text-center">
+				50
+			</td>
+			<td class="text-center">
+				Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">
+				Y
+			</td>
+			<td>
+				Primary Address
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iSAddr
+			</td>
+			<td class="text-center">
+				50
+			</td>
+			<td class="text-center">
+				Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">
+				N
+			</td>
+			<td>
+				Secondary Address
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iPCode
+			</td>
+			<td class="text-center">
+				5
+			</td>
+			<td class="text-center">
+				Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">
+				Y
+			</td>
+			<td>
+				Postal Code
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iCompany
+			</td>
+			<td class="text-center">
+				50
+			</td>
+			<td class="text-center">
+				Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">
+				N
+			</td>
+			<td>
+				Company
+			</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th colspan="7">
+				Canada
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				iLookUp
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Character
+			</td>
+			<td class="text-center">ADDRESS
+			</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				Type of CS LookUp (Canada)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iFName
+			</td>
+			<td class="text-center">50
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				First Name
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iLName
+			</td>
+			<td class="text-center">50
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				Last Name
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iPAddr
+			</td>
+			<td class="text-center">50
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				Primary Address
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iSAddr
+			</td>
+			<td class="text-center">50
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">N
+			</td>
+			<td>
+				Secondary Address
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iState
+			</td>
+			<td class="text-center">2
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				State code from above provided list
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iCountry
+			</td>
+			<td class="text-center">2
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				Country code from above provided list
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iCompany
+			</td>
+			<td class="text-center">50
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">N
+			</td>
+			<td>
+				Company
+			</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th colspan="7">
+				International
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr>
+			<td>
+				iLookUp
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Character
+			</td>
+			<td class="text-center">ADDRESS
+			</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				Type of CS LookUp (International)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iFName
+			</td>
+			<td class="text-center">50
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				First Name
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iLName
+			</td>
+			<td class="text-center">50
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				Last Name
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iPAddr
+			</td>
+			<td class="text-center">50
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				Primary Address
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iSAddr
+			</td>
+			<td class="text-center">50
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">N
+			</td>
+			<td>
+				Secondary Address
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iCountry
+			</td>
+			<td class="text-center">2
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				Country Code from above list
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iCompany
+			</td>
+			<td class="text-center">50
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">N
+			</td>
+			<td>
+				Company
+			</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th colspan="7">
+				By E-mail Address:
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr>
+			<td>
+				iLookUp
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Character
+			</td>
+			<td class="text-center">EMAL
+			</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				Type of CS LookUp (Email)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iEmailAddr
+			</td>
+			<td class="text-center">75
+			</td>
+			<td class="text-center">Character
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				Email
+			</td>
+		</tr>
+	</tbody>
+	<thead>
+		<tr>
+			<th colspan="7">
+				By Account Number:
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr>
+			<td>
+				iLookUp
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Character
+			</td>
+			<td class="text-center">&nbsp;
+			</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				Type of CS LookUp (Account)
+			</td>
+		</tr>
+		<tr>
+			<td>
+				iAccount
+			</td>
+			<td class="text-center">9
+			</td>
+			<td class="text-center">Number
+			</td>
+			<td>&nbsp;</td>
+			<td class="text-center">Y
+			</td>
+			<td>
+				Account Number
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+	<p>Here is an example of what a response with errors would look like:</p>
+
+		<figure>
+			<pre><code class="language-markup">
+&lt;?xml version="1.0"?&gt;
+&lt;RESPONSE&gt;
+&lt;FUSIONAPI&gt;FAILED&lt;/FUSIONAPI&gt;
+&lt;ERROR&gt;
+&lt;CODE&gt;4003&lt;/CODE&gt;
+&lt;MESSAGE&gt;**The Account cannot be empty for LookUp ACCOUNT.**&lt;/MESSAGE&gt;
+&lt;/ERROR&gt;
+&lt;/RESPONSE&gt;
+			</code></pre>
+		</figure>
+		
+	<p class="codetitle">Here is an example of what a "not found" response would look like:</p>
+	
+		<figure>
+			<pre><code class="language-markup">
+&lt;?xml version="1.0"?&gt;
+&lt;RESPONSE&gt;&lt;RESPONSE&gt;
+ &lt;FUSIONAPI&gt;ERROR&lt;/FUSIONAPI&gt;
+ &lt;ID&gt;YourKey&lt;/ID&gt;
+ &lt;ERRORCOUNT&gt;1&lt;/ERRORCOUNT&gt;
+ &lt;ERROR&gt;
+  &lt;CODE&gt;1102&lt;/CODE&gt;
+  &lt;MESSAGE&gt;**No Record was Found**&lt;/MESSAGE&gt;
+ &lt;/ERROR&gt;
+&lt;/RESPONSE&gt;
+			</code></pre>
+		</figure>
+		
+	<p class="codetitle">Here is an example of what a "found" response would look like when only 1 record is found:</p>
+	
+		<figure>
+			<pre><code class="language-markup">
+&lt;?xml version="1.0"?&gt;
+ &lt;RESPONSE&gt;
+  &lt;CUSTOMER&gt;
+   &lt;MAGID&gt;098Z9&lt;/MAGID&gt;
+   &lt;MAGNAME&gt;Training Inc&lt;/MAGNAME&gt;
+   &lt;ACCNT&gt;009999111&lt;/ACCNT&gt;
+   &lt;MATCD&gt;10001SBSJ0777M0&lt;/MATCD&gt;
+   &lt;TSTAT&gt;ACTIVE&lt;/TSTAT&gt;
+   &lt;TYPE&gt;REGULAR SUBSCRIBER&lt;/TYPE&gt;
+   &lt;TCODE&gt;No Title&lt;/TCODE&gt;
+   &lt;FNAME&gt;John&lt;/FNAME&gt;
+   &lt;MNAME&gt;&lt;/MNAME&gt;
+   &lt;LNAME&gt;Subscriber&lt;/LNAME&gt;
+   &lt;CNAME&gt;&lt;/CNAME&gt;
+   &lt;ADDR1&gt;111 Main&lt;/ADDR1&gt;
+   &lt;ADDR2&gt;Apt 16b&lt;/ADDR2&gt;
+   &lt;ADDR3&gt;&lt;/ADDR3&gt;
+   &lt;CITY&gt;New York&lt;/CITY&gt;
+   &lt;STATE&gt;NY&lt;/STATE&gt;
+   &lt;STATEN&gt;New York&lt;/STATEN&gt;
+   &lt;ZIP&gt;10001&lt;/ZIP&gt;
+   &lt;ZIP4&gt;6324&lt;/ZIP4&gt;
+   &lt;PCODE&gt;&lt;/PCODE&gt;
+   &lt;CNTRY&gt;US&lt;/CNTRY&gt;
+   &lt;CNTRYN&gt;UNITED STATES&lt;/CNTRYN&gt;
+   &lt;EMAIL&gt;emailaddress@email.com&lt;/EMAIL&gt;
+   &lt;EDELIV&gt;N&lt;/EDILIV&gt;
+   &lt;ESPECIALOPT&gt;O&lt;/ESPECIALOPT&gt;
+   &lt;ESUBINFOOPT&gt;O&lt;/ESUBINFOOPT&gt;
+   &lt;E3RDPARTYOPT&gt;O&lt;/E3RDPARTYOPT&gt;
+   &lt;AUTRNW&gt;N&lt;/AUTRNW&gt;
+   &lt;ARAMT&gt;$.00&lt;/ARAMT&gt;
+   &lt;CASH&gt;$.00&lt;/CASH&gt;
+   &lt;MDSE&gt;$.00&lt;/MDSE&gt;
+   &lt;CISSUE&gt; &lt;/CISSUE&gt;
+   &lt;EXP&gt;201506&lt;/EXP&gt;
+   &lt;CSRCE&gt;IPDJCB&lt;/CSRCE&gt;
+   &lt;OSRCE&gt;IPDJCB&lt;/OSRCE&gt;
+   &lt;OSTART&gt;201406&lt;/OSTART&gt;
+   &lt;CSTRT&gt;201406&lt;/CSTRT&gt;
+   &lt;LRSTRT&gt;201506&lt;/LRSTRT&gt;
+   &lt;GEO&gt;0&lt;/GEO&gt;
+   &lt;LCDATE&gt; &lt;/LCDATE&gt;
+   &lt;LODATE&gt;04/11/2014&lt;/LODATE&gt;
+   &lt;LOTERM&gt;1&lt;/LOTERM&gt;
+   &lt;LOAMT&gt;2.99&lt;/LOAMT&gt;
+    &lt;LPAMT&gt;2.99&lt;/LPAMT&gt;
+   &lt;LPDATE&gt;04/11/2014&lt;/LPDATE&gt;
+   &lt;MRKT&gt;0000000     A      D&lt;/MRKT&gt;
+   &lt;HPHONE&gt;&lt;/HPHONE&gt;
+   &lt;HSPECIALOPT&gt;&lt;/HSPECIALOPT&gt;
+   &lt;HSUBINFOOPT&gt;&lt;/HSUBINFOOPT&gt;
+   &lt;H3RDPARTYOPT&gt;&lt;/H3RDPARTYOPT&gt;
+   &lt;MEDIATYPE&gt;D&lt;/MEDIATYPE&gt;
+   &lt;CDECILE&gt;  &lt;/CDECILE&gt;
+   &lt;PDECILE&gt;  &lt;/PDECILE&gt;
+   &lt;RTSTCD&gt;&lt;/RTSTCD&gt;
+   &lt;BLEFF&gt;&lt;/BLEFF&gt;
+  &lt;/CUSTOMER&gt;
+  &lt;FUSIONAPI&gt;COMPLETE&lt;/FUSIONAPI&gt;
+  &lt;ID&gt;YourKey&lt;/ID&gt;
+  &lt;MESSAGE&gt;**Record Found**&lt;/MESSAGE&gt;
+ &lt;/RESPONSE&gt;
+			</code></pre>
+		</figure>
+		
+	<p class="codetitle">Here is an example of what a "found" response would look like when multiple records are found:</p>
+	
+		<figure>
+			<pre><code class="language-markup">
+&lt;?xml version="1.0"?&gt;
+ &lt;RESPONSE&gt;
+  &lt;CUSTOMER&gt;
+   &lt;ACCNT&gt;000700001&lt;/ACCNT&gt;
+   &lt;MEDIATYPE&gt; &lt;/MEDIATYPE&gt;
+   &lt;TSTAT&gt;ACTIVE&lt;/TSTAT&gt;
+   &lt;TYPE&gt;DONOR ONLY(DOES NOT SUBSCRIBE)&lt;/TYPE&gt;
+   &lt;FNAME&gt;John&lt;/FNAME&gt;
+   &lt;MNAME&gt;&lt;/MNAME&gt;
+   &lt;LNAME&gt;Subscriber&lt;/LNAME&gt;
+   &lt;CNAME&gt;&lt;/CNAME&gt;
+   &lt;ADDR1&gt;1111 Main&lt;/ADDR1&gt;
+   &lt;ADDR2&gt;&lt;/ADDR2&gt;
+   &lt;CITY&gt;Some City&lt;/CITY&gt;
+   &lt;STATE&gt;UT&lt;/STATE&gt;
+   &lt;ZIP&gt;99999&lt;/ZIP&gt;
+   &lt;ZIP4&gt;9999&lt;/ZIP4&gt;
+   &lt;PCODE&gt;&lt;/PCODE&gt;
+   &lt;CNTRY&gt;US&lt;/CNTRY&gt;
+   &lt;EMAIL&gt;email1@email.net&lt;/EMAIL&gt;
+  &lt;/CUSTOMER&gt;
+  &lt;CUSTOMER&gt;
+   &lt;ACCNT&gt;0007222222&lt;/ACCNT&gt;
+   &lt;MEDIATYPE&gt;P&lt;/MEDIATYPE&gt;
+   &lt;TSTAT&gt;EXPIRED&lt;/TSTAT&gt;
+   &lt;TYPE&gt;REGULAR SUBSCRIBER&lt;/TYPE&gt;
+   &lt;FNAME&gt;John&lt;/FNAME&gt;
+   &lt;MNAME&gt;&lt;/MNAME&gt;
+   &lt;LNAME&gt;Subscriber&lt;/LNAME&gt;
+   &lt;CNAME&gt;&lt;/CNAME&gt;
+   &lt;ADDR1&gt;1111 Main&lt;/ADDR1&gt;
+   &lt;ADDR2&gt;&lt;/ADDR2&gt;
+   &lt;CITY&gt;Some City&lt;/CITY&gt;
+   &lt;STATE&gt;UT&lt;/STATE&gt;
+   &lt;ZIP&gt;99999&lt;/ZIP&gt;
+   &lt;ZIP4&gt;9999&lt;/ZIP4&gt;
+   &lt;PCODE&gt;&lt;/PCODE&gt;
+   &lt;CNTRY&gt;US&lt;/CNTRY&gt;
+   &lt;EMAIL&gt;anemail@email.com&lt;/EMAIL&gt;
+  &lt;/CUSTOMER&gt;
+  &lt;CUSTOMER&gt;
+   &lt;ACCNT&gt;000733333&lt;/ACCNT&gt;
+   &lt;MEDIATYPE&gt; &lt;/MEDIATYPE&gt;
+   &lt;TSTAT&gt;ACTIVE&lt;/TSTAT&gt;
+   &lt;TYPE&gt;DONOR ONLY(DOES NOT SUBSCRIBE)&lt;/TYPE&gt;
+   &lt;FNAME&gt;John&lt;/FNAME&gt;
+   &lt;MNAME&gt;&lt;/MNAME&gt;
+   &lt;LNAME&gt;Subscriber&lt;/LNAME&gt;
+   &lt;CNAME&gt;&lt;/CNAME&gt;
+   &lt;ADDR1&gt;1111 Main&lt;/ADDR1&gt;
+   &lt;ADDR2&gt;&lt;/ADDR2&gt;
+   &lt;CITY&gt;Some City&lt;/CITY&gt;
+   &lt;STATE&gt;UT&lt;/STATE&gt;
+   &lt;ZIP&gt;99999&lt;/ZIP&gt;
+   &lt;ZIP4&gt;9999&lt;/ZIP4&gt;
+   &lt;PCODE&gt;&lt;/PCODE&gt;
+   &lt;CNTRY&gt;US&lt;/CNTRY&gt;
+   &lt;EMAIL&gt;email@email.net&lt;/EMAIL&gt;
+  &lt;/CUSTOMER&gt;
+  &lt;CUSTOMER&gt;
+   &lt;ACCNT&gt;000755555&lt;/ACCNT&gt;
+   &lt;MEDIATYPE&gt; &lt;/MEDIATYPE&gt;
+   &lt;TSTAT&gt;ACTIVE&lt;/TSTAT&gt;
+   &lt;TYPE&gt;DONOR ONLY(DOES NOT SUBSCRIBE)&lt;/TYPE&gt;
+   &lt;FNAME&gt;John&lt;/FNAME&gt;
+   &lt;MNAME&gt;&lt;/MNAME&gt;
+   &lt;LNAME&gt;Subscriber&lt;/LNAME&gt;
+   &lt;CNAME&gt;&lt;/CNAME&gt;
+   &lt;ADDR1&gt;1111 Main&lt;/ADDR1&gt;
+   &lt;ADDR2&gt;&lt;/ADDR2&gt;
+   &lt;CITY&gt;Some City&lt;/CITY&gt;
+   &lt;STATE&gt;UT&lt;/STATE&gt;
+   &lt;ZIP&gt;99999&lt;/ZIP&gt;
+   &lt;ZIP4&gt;9999&lt;/ZIP4&gt;
+   &lt;PCODE&gt;&lt;/PCODE&gt;
+   &lt;CNTRY&gt;US&lt;/CNTRY&gt;
+   &lt;EMAIL&gt;anemail@email.com&lt;/EMAIL&gt;
+  &lt;/CUSTOMER&gt;
+  &lt;FUSIONAPI&gt;COMPLETE&lt;/FUSIONAPI&gt;
+  &lt;ID&gt;YourKey&lt;/ID&gt;
+  &lt;MESSAGE&gt;**Multiple Records Found**&lt;/MESSAGE&gt;
+ &lt;/RESPONSE&gt;
+			</code></pre>
+		</figure>
+		
+	<p class="codetitle"><strong>Glossary</strong></p>
+	
+<table class="table table-condensed table-bordered table-striped">
+	<thead>
+		<tr>
+			<th>
+				<p>XML TAG</p>
+			</th>
+			<th>
+				<p>MEANING</p>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<p>&lt;TSTAT&gt;</p>
+			</td>
+			<td>
+				<p>The status of the subscriber. Can be the following:</p>
+				<p>PENDING</p>
+				<p>ACTIVE</p>
+				<p>CANCEL-REFUND</p>
+				<p>CANCEL-DUPLICATE SALE</p>
+				<p>CREDIT SUSPEND</p>
+				<p>PO UNDELIVERABLE</p>
+				<p>CANCEL -SUBSCRIBER REQUEST</p>
+				<p>EXPIRED</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;TYPE&gt;</p>
+			</td>
+			<td>
+				<p>The type of the subscriber. Can be the following:</p>
+				<p>REGULAR SUBSCRIBER</p>
+				<p>DONOR - SUBSCRIBER</p>
+				<p>DONOR ONLY(DOES NOT SUBSCRIBE)</p>
+				<p>DONOR AND RECIPIENT</p>
+				<p>RECIPIENT</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;EDELIV&gt;</p>
+			</td>
+			<td>
+				<p>Tells if the email address is deliverable to. Values can be Y (Yes) or N (No).</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;ESPECIALOPT&gt;</p>
+			</td>
+			<td>
+				<p>Email address optin/optout of Publisher Specials X = No resp,I = IN,O = OUT,C = Conv no resp</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;ESUBINFOOPT&gt;</p>
+			</td>
+			<td>
+				<p>Email address optin/optout of Subscriber Info X = No resp,I = IN,O = OUT,C = Conv no resp</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;E3RDPARTYOPT&gt;</p>
+			</td>
+			<td>
+				<p>Email address optin/optout of 3RD PARTY RENTAL X = No resp,I = IN,O = OUT,C = Conv no resp</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;AUTRNW&gt;</p>
+			</td>
+			<td>
+				<p>Tells if the subscription can be auto renewed. Values can be Y (Yes) or N (No).</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;ARAMT&gt;</p>
+			</td>
+			<td>
+				<p>AR amount due - The amount of money the subscriber owes.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;CASH&gt;</p>
+			</td>
+			<td>
+				<p>The total amount of money the subscriber has paid from beginning of subscription.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;MDSE&gt;</p>
+			</td>
+			<td>
+				<p>The total amount that the subscriber has ordered from beginning of subscription.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;CISSUE&gt;</p>
+			</td>
+			<td>
+				<p>The issue that the subscriber is currently being served. Format YYYYII (year &amp; issue).</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;EXP&gt;</p>
+			</td>
+			<td>
+				<p>The last issue that the subscriber is due to receive. Format YYYYII (year &amp; issue).</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;CSRCE&gt;</p>
+			</td>
+			<td>
+				<p>The source key of the subscriber&rsquo;s contract that is currently being served</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;OSRCE&gt;</p>
+			</td>
+			<td>
+				<p>The source key of the subscriber&rsquo;s first contract order</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;OSTRT&gt;</p>
+			</td>
+			<td>
+				<p>The issue that the subscriber first received</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;CSTRT&gt;</p>
+			</td>
+			<td>
+				<p>The first issue of the subscriber&rsquo;s contract that is currently being served. Format YYYYII (year &amp; issue).</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;LRSTRT&gt;</p>
+			</td>
+			<td>
+				<p>The first issue of the subscriber&rsquo;s last contract order. Format YYYYII (year &amp; issue).</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;GEO&gt;</p>
+			</td>
+			<td>
+				<p>The geographic indicator for where the subscription is sent. Values are 0 for Domestic, 2 for Canadian, 4 thru 9 for International</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;LCDATE&gt;</p>
+			</td>
+			<td>
+				<p>The most recent date that a contract was cancelled (if one was). Format MM/DD/YYYY.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;LODATE&gt;</p>
+			</td>
+			<td>
+				<p>The most recent date that a contract was contract was created (an order was taken) . Format MM/DD/YYYY.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;LOTERM&gt;</p>
+			</td>
+			<td>
+				<p>The most recent term of an order was taken for subscriber</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;LOAMT&gt;</p>
+			</td>
+			<td>
+				<p>The most recent amount of an order was taken for subscriber</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;LPAMT&gt;</p>
+			</td>
+			<td>
+				<p>The amount of the most recent payment</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;LPDATE&gt;</p>
+			</td>
+			<td>
+				<p>The date of the most recent payment. Format MM/DD/YYYY.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;MRKT&gt;</p>
+			</td>
+			<td>
+				<p>20 position Marketing codes. Below is breakdown of positions:</p>
+				<p>Pos. 1-5 PREMIUM CODE, BLANK, OR ZERO</p>
+				<p>Pos. 6 NUMBER OF BILLING INSTALLMENTS, BLANK, OR ZERO</p>
+				<p>Pos. 7 INVOICE TEST CODE, BLANK, OR ZERO</p>
+				<p>Pos. 8-11 PUBLICATION SPECIFIC</p>
+				<p>Pos. 12 QUALIFICATION CODE</p>
+				<p>Q=QUALIFIED</p>
+				<p>N=NOT QUALIFIED</p>
+				<p>Pos. 13 PRICE RATE CODE</p>
+				<p>A - ELIGIBLE FOR ARREAS</p>
+				<p>B - NOT ELIGIBLE FOR ARREAS</p>
+				<p>C - CONTROLLED CIRCULATION</p>
+				<p>Pos. 14 3C CODE - ADDRESS TYPE CALCULATED IN KEY</p>
+				<p>Pos. 15 3B CODE - QUALIFICATION SOURCE</p>
+				<p>Pos. 16-17 PUB SPECIFIC</p>
+				<p>Pos. 18-19 PUB SPECIFIC</p>
+				<p>Pos. 19 = ECO CODE FOR MT PUBS</p>
+				<p>Pos. 20 PUB SPECIFIC</p>
+				<p>MEDIA TYPE PUBS -</p>
+				<p>P or space = PRINT, D = DIGITAL,B = BOTH</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;HSPECIALOPT&gt;</p>
+			</td>
+			<td>
+				<p>Home phone optin/optout of Publisher Specials X = No resp,I = IN,O = OUT,C = Conv no resp</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;HSUBINFOOPT&gt;</p>
+			</td>
+			<td>
+				<p>Home phone optin/optout of Subscriber Info X = No resp,I = IN,O = OUT,C = Conv no resp</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;H3RDPARTYOPT&gt;</p>
+			</td>
+			<td>
+				<p>Home phone optin/optout of 3RD PARTY RENTAL X = No resp,I = IN,O = OUT,C = Conv no resp</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;MEDIATYPE&gt;</p>
+			</td>
+			<td>
+				<p>The Media type of the most recent order. P or space = PRINT, D = DIGITAL,B = BOTH</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;CDECILE&gt;</p>
+			</td>
+			<td>
+				<p>DECILE SCORE VALUE 'AA' THRU 'ZZ' &amp; '01' THRU '99'</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;PDECILE&gt;</p>
+			</td>
+			<td>
+				<p>PREVIOUS DECILE SCORE VALUE 'AA' THRU 'ZZ' &amp; '01' THRU '99'</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;RTSTCD&gt;</p>
+			</td>
+			<td>
+				<p>Renewal test code. Possible values are:</p>
+				<p>9=DO NOT RENEW</p>
+				<p>N=NEVER RENEW</p>
+				<p>V=AUTO RENEWAL FOR SUBSCRIBER</p>
+				<p>W=AUTO RENEAL FOR GIFT</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;BLEFF&gt;</p>
+			</td>
+			<td>
+				<p>Billing Effort. 9=DO NOT INVOICE/CREDIT CANCEL</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;FUSIONAPI&gt;</p>
+			</td>
+			<td>
+				<p>The result of the call. Possible values are:</p>
+				<p>COMPLETE (for successful completion)</p>
+				<p>ERROR (when errors were found with data passed in)</p>
+				<p>FAILED (when there was an unexpected program failure)</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;ID&gt;</p>
+			</td>
+			<td>
+				<p>The value of iID passed in with call</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p>&lt;MESSAGE&gt;</p>
+			</td>
+			<td>
+				<p>Message back to caller. Possible values are:</p>
+				<p>**No Record was Found**</p>
+				<p>**Record Found**</p>
+				<p>**Multiple Records Found**</p>
+				<p>Any error messages being returned to caller from data passed in.</p>
+			</td>
+		</tr>
+	<tbody>
+</table>
+		
+
+	<!-- End Subscriber LookUp Type A -->
+	<hr>
+	
+	<!-- Start Central Authentication Service Integration -->
+	<h3 id="ip-cas">Central Authentication Service Integration (optional)</h3>
+	<p><strong>Credentialing</strong></p>
+	<p>PCD supports the ability for third party systems to delegate credentialing to the PCD CAS implementation. This allows a third party system to redirect the user to a PCD hosted login page with a URL parameter that specifies where the user should be returned to upon successful login.  When CAS sends the user back to the return URL an additional parameter will be included that contains an authentication ticket. The third party system must immediately make a call to the CAS validate API passing this ticket. If the ticket is valid, the API will return back the value of the username that was logged in. The third party system shall then consider the user to be 'logged in' to their application.</p>
+	<p>Documentation and pre-built libraries to support the CAS authentication process can be found here:</br><a href="https://apereo.github.io/cas/5.0.x/integration/CAS-Clients.html" target="_blank" class="link">https://apereo.github.io/cas/5.0.x/integration/CAS-Clients.html</a></p>
+	<p>URLs to PCD CAS system are as follows.</p>
+	<p><strong>PCDTEST:</strong></p>
+	<div class="well well-sm">
+	BASE URL: https://[servicecode]-pcdtest.pcdsso.com/cas </br>
+	LOGIN PAGE URL: https://[servicecode]-pcdtest.pcdsso.com/cas/login </br>
+	VALIDATE API: https://[servicecode]-pcdtest.pcdsso.com/cas/serviceValidate 
+	</div>
+	<p><strong>PRODUCTION:</strong></p>
+	<div class="well well-sm">
+	BASE URL: https://[servicecode].pcdsso.com/cas </br>
+	LOGIN PAGE URL: https://[servicecode].pcdsso.com/cas/login </br>
+	VALIDATE API: https://[servicecode].pcdsso.com/cas/login
+	</div>
+	<p><em>Please contact your PCD account manager to be issued a publication specific service code. </em></p>
+	<p><strong>Entitlement</strong></p>
+	<p>Once a user has been logged in via CAS, the third party system can make a subsequent API call passing the username back to PCD to retrieve a list of all account numbers associated with the user. These account numbers can then be used to call the lookup API in the first section of this document.</p>
+	<p><strong>URLs to retrieve account numbers by username are as follows.</strong></p>
+	<p>PCDTEST:</p> 
+	<div class="well well-sm">https://secure.testcompany.com/pcdtest/cas.getAcctByUsername?iMagId=[magid]&iUsername=[username_from_cas_validate_api] </div>
+	<p>PRODUCTION:</p> 
+	<div class="well well-sm">https://secure.testcompany.com/pcd/cas.getAcctByUsername?iMagId=[magid]&iUsername=[username_from_cas_validate_api] </div>
+	<p><strong>Overview of digital access using third party credentialing</strong></p>
+	<p><img src="images/dig-access-overview.jpg" alt="Overview of Digital Access" title="Overview of Digital Access" class="img-responsive"></p>
+
+	<!-- End Central Authentication Service Integration -->
+	<hr>
+	
+
+         <!-- <div class="line"></div> -->
+
+
+     </div>
+
+</div>
+
+</div>
+
+
+
+
+
+<script src="js/prism.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sidebar").mCustomScrollbar({
+            theme: "minimal"
+        });
+
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar, #content').toggleClass('active');
+            $('.collapse.in').toggleClass('in');
+            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+        });
+    });
+</script>
+
+<script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("myBtn").style.display = "block";
+  } else {
+    document.getElementById("myBtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+
+</body>
+</html>
