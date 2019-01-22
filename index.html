@@ -26,28 +26,28 @@
              <p>Table of Contents</p>
              <li>
                  <a href="index.html">Home</a>
-				 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">API Lookup by IP Address</a>
+				 <a href="#homeSubmenu" class='collapes-button' data-toggle="collapse" aria-expanded="false">API Lookup by IP Address</a>
                  <ul class="collapse list-unstyled" id="homeSubmenu">
-					<li><a href="index.html#ip-intro">Introduction</a></li>
-					<li><a href="index.html#ip-accessing">Accessing</a></li>
-					<li><a href="index.html#ip-errorcodes">Error Codes And Messages</a></li>
-					<li><a href="index.html#ip-statecodes">State Codes</a></li>
-					<li><a href="index.html#ip-countrycodes">Country Codes</a></li>
-					<li><a href="index.html#ip-sublookup-a">Fusion API Subscriber LookUp (Type:A)</a></li>
-					<li><a href="index.html#ip-cas">Central Authentication Service Integration (optional)</a></li>
+					<li data-id='ip-intro' class='sub-menu' ><a href="index.html#ip-intro">Introduction</a></li>
+					<li data-id='ip-accessing' class='sub-menu' ><a href="index.html#ip-accessing">Accessing</a></li>
+					<li data-id='ip-errorcodes' class='sub-menu' ><a href="index.html#ip-errorcodes">Error Codes And Messages</a></li>
+					<li data-id='ip-statecodes' class='sub-menu' ><a href="index.html#ip-statecodes">State Codes</a></li>
+					<li data-id='ip-countrycodes' class='sub-menu' ><a href="index.html#ip-countrycodes">Country Codes</a></li>
+					<li data-id='ip-sublookup-a' class='sub-menu' ><a href="index.html#ip-sublookup-a">Fusion API Subscriber LookUp (Type:A)</a></li>
+					<li data-id='ip-cas' class='sub-menu' ><a href="index.html#ip-cas">Central Authentication Service Integration (optional)</a></li>
                  </ul>
              </li>
              <li>
                  
-                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">API Order Processing</a>
+                 <a href="#pageSubmenu" data-toggle="collapse" class='collapes-button'  aria-expanded="false">API Order Processing</a>
                  <ul class="collapse list-unstyled" id="pageSubmenu">
-					<li><a href="index_ord.html#op-intro">Introduction</a></li>
-					<li><a href="index_ord.html#op-accessing">Accessing</a></li>
-					<li><a href="index_ord.html#op-errorcodes">Error Codes And Messages</a></li>
-					<li><a href="index_ord.html#op-statecodes">State Codes</a></li>
-					<li><a href="index_ord.html#op-countrycodes">Country Codes</a></li>
-					<li><a href="index_ord.html#op-sublookup-a">Fusion API Subscriber LookUp (Type:A)</a></li>
-					<li><a href="index_ord.html#op-cas">Central Authentication Service Integration (optional)</a></li>
+					<li data-id='op-intro'  class='sub-menu' ><a href="index_ord.html#op-intro">Introduction</a></li>
+					<li data-id='op-accessing'  class='sub-menu' ><a href="index_ord.html#op-accessing">Accessing</a></li>
+					<li data-id='op-errorcodes'  class='sub-menu' ><a href="index_ord.html#op-errorcodes">Error Codes And Messages</a></li>
+					<li data-id='op-statecodes'  class='sub-menu' ><a href="index_ord.html#op-statecodes">State Codes</a></li>
+					<li data-id='op-countrycodes'  class='sub-menu' ><a href="index_ord.html#op-countrycodes">Country Codes</a></li>
+					<li data-id='op-sublookup-a'  class='sub-menu' ><a href="index_ord.html#op-sublookup-a">Fusion API Subscriber LookUp (Type:A)</a></li>
+					<li data-id='op-cas'  class='sub-menu' ><a href="index_ord.html#op-cas">Central Authentication Service Integration (optional)</a></li>
                  </ul>
              </li>
              <!-- <li>
@@ -4407,7 +4407,15 @@ https://secure.testcompany.com/cdbtest/fusion_api.main?iMagId=XXXXX&iId=YourKey&
 
 
 
+<style>
+.sticky-button{
+position: fixed;
+    top: 0;
+    background: #fff;
+    width: 100%;
 
+}
+</style>
 
 <script src="js/prism.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -4420,11 +4428,43 @@ https://secure.testcompany.com/cdbtest/fusion_api.main?iMagId=XXXXX&iId=YourKey&
             theme: "minimal"
         });
 
+		
+		$('.collapes-button').click(function(){
+			$('.collapse.in').collapse('hide');
+		});
+       
+	   
+		highlight('none');
+		
+		$('.sub-menu').click(function(){
+			h=$(this).data('id');
+			highlight(h);
+		});
+		function highlight(h){
+			if(h=='none'){
+				h = window.location.hash.substr(1);
+			}
+			$('.sub-menu').removeClass('active');
+			$('[data-id="'+h+'"]').addClass('active');
+		}
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar, #content').toggleClass('active');
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
         });
+		
+		document.addEventListener('scroll', handler, {passive: true});
+		
+		function handler (){
+		
+			if($(this).scrollTop()>200){
+				$('nav .container-fluid').addClass('sticky-button');
+			}else{
+				$('nav .container-fluid').removeClass('sticky-button');
+
+			}
+		
+		}
     });
 </script>
 
