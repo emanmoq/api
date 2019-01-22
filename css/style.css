@@ -132,7 +132,9 @@ hr {
     color: #fff;
     background: #264889;
 }
-
+#sidebar  li ul li.active > a{
+    background: #337AB7;
+}
 a[data-toggle="collapse"] {
     position: relative;
 }
@@ -195,6 +197,11 @@ a.article, a.article:hover {
 }
 
 header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+
 	background-color: #337AB7;
 	font-weight: 600;
 	padding: 15px;
