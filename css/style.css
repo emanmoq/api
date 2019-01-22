@@ -36,7 +36,9 @@ a, a:hover, a:focus {
     border-radius: 0;
     margin-bottom: 0;
 }
-
+.clear{
+    clear: both;
+}
 .navbar-btn {
     box-shadow: none;
     outline: none !important;

@@ -68,17 +68,19 @@
      <div id="content">
 
 		<header class="container-fluid">
-		<p>Corporate Technology - Fusion API Documentation</p>
+				<button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" style="float: left">
+						<i class="glyphicon glyphicon-align-left"></i>
+						<span>Toggle Sidebar</span>
+					</button>
+		<p style="display: inline-block">Corporate Technology - Fusion API Documentation</p>
+		<div class="clear"></div>
 		</header>
 
          <nav class="navbar navbar-default">
              <div class="container-fluid">
 
                  <div class="navbar-header">
-                     <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                         <i class="glyphicon glyphicon-align-left"></i>
-                         <span>Toggle Sidebar</span>
-                     </button>
+
                  </div>
 
                  
@@ -4411,13 +4413,13 @@ https://secure.testcompany.com/cdbtest/fusion_api.main?iMagId=XXXXX&iId=YourKey&
 
 
 <style>
-.sticky-button{
-position: fixed;
+header{
+position: sticky;
     top: 0;
-    background: #fff;
     width: 100%;
 
 }
+
 </style>
 
 <script src="js/prism.js"></script>
